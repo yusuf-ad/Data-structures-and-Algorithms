@@ -75,3 +75,28 @@ console.log(fib(28));
 console.log(fib(35));
 
 // ! Recursion means a function that call itself
+
+// Write a recursive function to count the number of items in a list.
+
+function itemsNumber(arr) {
+  if (arr.length === 0) return 0;
+
+  if (arr.length === 1) return 1;
+
+  return 1 + itemsNumber(arr.slice(1));
+}
+
+console.log(itemsNumber([4, 3, 2, 7, 5, 31]));
+
+function findMax(arr, max = arr[0]) {
+  if (arr.length === 0) return max;
+
+  if (arr[0] > max) max = arr[0];
+
+  return findMax(arr.slice(1), max);
+}
+
+console.log(findMax([4, 3, 2, 7, 57, 31, 4]));
+
+// When you’re writing a recursive function involving an array, the base case is
+// often an empty array or an array with one element. If you’re stuck, try that first.
