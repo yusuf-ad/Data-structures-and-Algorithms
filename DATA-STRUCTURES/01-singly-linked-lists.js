@@ -36,6 +36,30 @@ class SinglyLinkedList {
     return this;
   }
 
+  pop() {
+    // edge case
+    if (!this.head) return undefined;
+
+    var current = this.head;
+    var newTail = current;
+
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return current;
+  }
+
   traverse() {
     let current = this.head;
     while (current) {
@@ -48,8 +72,16 @@ class SinglyLinkedList {
 const list1 = new SinglyLinkedList();
 const list2 = new SinglyLinkedList();
 
-console.log(list1.push("deneme1"));
-console.log(list1.push("deneme2"));
-console.log(list1.push("deneme3"));
+console.log(list1.push("11"));
+console.log(list1.push("12"));
+console.log(list1.push("13"));
+console.log(list1.push("14"));
 
 list1.traverse();
+
+console.log(list1.pop());
+console.log(list1.pop());
+console.log(list1.pop());
+console.log(list1.pop());
+console.log(list1.pop());
+console.log(list1);
