@@ -105,6 +105,15 @@ class SinglyLinkedList {
     return current;
   }
 
+  set(index, value) {
+    // edge case
+    if (!this.get(index)) return false;
+
+    this.get(index).value = value;
+
+    return true;
+  }
+
   traverse() {
     let current = this.head;
     while (current) {
@@ -132,4 +141,11 @@ console.log(list2.unshift("hello"));
 
 console.log(list1);
 
+console.log(list1.get(0));
+
+console.log(list1.set(1, "ali"));
+console.log(list1.get(0));
+
 console.log(list1.get(1));
+console.log(list1.get(2));
+console.log(list1.get(3));
