@@ -89,6 +89,58 @@ class SinglyLinkedList {
     return this;
   }
 
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false;
+
+    if (index === this.length) return Boolean(this.push(value));
+    if (index === 0) return !!this.unshift(value);
+
+    const newNode = new Node(value);
+
+    const curNode = this.get(index);
+
+    this.get(index - 1).next = newNode;
+    newNode.next = curNode;
+
+    this.length++;
+
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length || !index) return undefined;
+
+    if (index === 0) return this.shift().value;
+    if (index === this.length - 1) return this.pop().value;
+
+    const prevNode = this.get(index - 1);
+    const delNode = this.get(index);
+
+    prevNode.next = delNode.next;
+
+    this.length--;
+
+    return delNode.value;
+  }
+
+  reverse() {
+    let temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+
+    console.log(this);
+
+    let before = null;
+    let after = temp.next;
+
+    for (let i = 0; i < this.length; i++) {
+      after = temp.next;
+      temp.next = before;
+      before = temp;
+      temp = after;
+    }
+  }
+
   get(index) {
     // edge case
     if (index < 0 || index >= this.length) return null;
@@ -97,7 +149,6 @@ class SinglyLinkedList {
     let current = this.head;
 
     while (counter !== index) {
-      console.log(counter, this.head.value);
       current = current.next;
       counter++;
     }
@@ -126,26 +177,38 @@ class SinglyLinkedList {
 const list1 = new SinglyLinkedList();
 const list2 = new SinglyLinkedList();
 
-console.log(list1.push("11"));
-console.log(list1.push("12"));
+// console.log(list1.push("11"));
+// console.log(list1.push("12"));
 
+list1.push(1);
+list1.push(2);
+list1.push(3);
+list1.push(4);
+
+// list1.remove(2);
+
+// list1.insert(0, 49);
+// list1.insert(3, 29);
 list1.traverse();
-
-// console.log(list1.shift());
-// console.log(list1);
-
-list1.unshift("hi");
-
-console.log(list2.unshift("hello"));
-console.log(list2.unshift("hello"));
-
+list1.reverse();
+list1.traverse();
 console.log(list1);
 
-console.log(list1.get(0));
+// // console.log(list1.shift());
+// // console.log(list1);
 
-console.log(list1.set(1, "ali"));
-console.log(list1.get(0));
+// list1.unshift("hi");
 
-console.log(list1.get(1));
-console.log(list1.get(2));
-console.log(list1.get(3));
+// console.log(list2.unshift("hello"));
+// console.log(list2.unshift("hello"));
+
+// console.log(list1);
+
+// console.log(list1.get(0));
+
+// console.log(list1.set(1, "ali"));
+// console.log(list1.get(0));
+
+// console.log(list1.get(1));
+// console.log(list1.get(2));
+// console.log(list1.get(3));
