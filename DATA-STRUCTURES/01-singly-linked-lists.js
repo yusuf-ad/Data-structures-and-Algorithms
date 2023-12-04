@@ -1,5 +1,4 @@
 // each node has a value and reference
-
 class Node {
   constructor(value) {
     this.value = value;
