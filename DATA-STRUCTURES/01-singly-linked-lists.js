@@ -25,10 +25,10 @@ class SinglyLinkedList {
     if (!this.head) {
       this.head = node;
       this.tail = this.head;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
     }
-
-    this.tail.next = node;
-    this.tail = node;
 
     this.length++;
 
@@ -180,17 +180,17 @@ const list2 = new SinglyLinkedList();
 // console.log(list1.push("12"));
 
 list1.push(1);
-list1.push(2);
-list1.push(3);
-list1.push(4);
+// list1.push(2);
+// list1.push(3);
+// list1.push(4);
 
 // list1.remove(2);
 
 // list1.insert(0, 49);
 // list1.insert(3, 29);
-list1.traverse();
-list1.reverse();
-list1.traverse();
+// list1.traverse();
+// list1.reverse();
+// list1.traverse();
 console.log(list1);
 
 // // console.log(list1.shift());
